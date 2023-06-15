@@ -1,0 +1,108 @@
+#trapezoid, #oval, #rectangle, #square, #circle, #parallelogram, #triangle-down, #triangle-up, #triangle-right, #triangle-left {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button {
+  background-color: white;
+  width: 100%;
+  height: 90px;
+  border-radius: 8px;
+  border-width: 0px;
+  cursor: pointer;
+}
+.Button:hover {
+  background-color: #ffa200;
+}
+
+#triangle-down, #triangle-up, #triangle-right, #triangle-left {
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#triangle-left {
+  border-top: 35px solid transparent;
+  border-right: 70px solid rgb(182, 182, 182);
+  border-bottom: 35px solid transparent;
+}
+
+#triangle-right {
+  border-top: 35px solid transparent;
+  border-left: 70px solid rgb(182, 182, 182);
+  border-bottom: 35px solid transparent;
+}
+
+#triangle-up {
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 70px solid rgb(182, 182, 182);
+}
+
+#triangle-down {
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-top: 70px solid rgb(182, 182, 182);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #6eda78, #ffa200);
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 24px;
+  margin: 20px;
+}
+
+#parallelogram {
+  width: 150px;
+  height: 70px;
+  transform: skew(20deg);
+  background: rgb(182, 182, 182);
+}
+
+#circle {
+  width: 80px;
+  height: 80px;
+  background: rgb(182, 182, 182);
+  border-radius: 50%;
+}
+
+#square {
+  width: 80px;
+  height: 80px;
+  background: rgb(182, 182, 182);
+}
+
+#rectangle {
+  width: 180px;
+  height: 75px;
+  background: rgb(182, 182, 182);
+}
+
+#oval {
+  width: 150px;
+  height: 75px;
+  background: rgb(182, 182, 182);
+  border-radius: 100px/50px;
+}
+
+#trapezoid {
+  border-bottom: 80px solid rgb(182, 182, 182);
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0px;
+  width: 120px;
+}
+
+/*# sourceMappingURL=main.css.map */

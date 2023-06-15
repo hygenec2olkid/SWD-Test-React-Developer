@@ -1,0 +1,120 @@
+$color1: #6eda78;
+$color2: #ffa200;
+$color3: rgb(182, 182, 182);
+
+%center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%Button {
+  background-color: white;
+  width: 100%;
+  height: 90px;
+  border-radius: 8px;
+  border-width: 0px;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffa200;
+  }
+}
+
+%triangle {
+  @extend %center;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#triangle-left {
+  @extend %triangle;
+  border-top: 35px solid transparent;
+  border-right: 70px solid $color3;
+  border-bottom: 35px solid transparent;
+}
+
+#triangle-right {
+  @extend %triangle;
+  border-top: 35px solid transparent;
+  border-left: 70px solid $color3;
+  border-bottom: 35px solid transparent;
+}
+
+#triangle-up {
+  @extend %triangle;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 70px solid $color3;
+}
+
+#triangle-down {
+  @extend %triangle;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-top: 70px solid $color3;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, $color1, $color2);
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 24px;
+  margin: 20px;
+}
+
+.Button {
+  @extend %Button;
+}
+
+#parallelogram {
+  @extend %center;
+  width: 150px;
+  height: 70px;
+  transform: skew(20deg);
+  background: $color3;
+}
+
+#circle {
+  @extend %center;
+  width: 80px;
+  height: 80px;
+  background: $color3;
+  border-radius: 50%;
+}
+#square {
+  @extend %center;
+  width: 80px;
+  height: 80px;
+  background: $color3;
+}
+#rectangle {
+  @extend %center;
+  width: 180px;
+  height: 75px;
+  background: $color3;
+}
+#oval {
+  @extend %center;
+  width: 150px;
+  height: 75px;
+  background: $color3;
+  border-radius: 100px / 50px;
+}
+#trapezoid {
+  @extend %center;
+  border-bottom: 80px solid $color3;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0px;
+  width: 120px;
+}
