@@ -1,56 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Divider, Col, Row } from "antd";
 import "./main.css";
 
 const App = () => {
-  const [buttonOrder, setButtonOrder] = useState(0);
-  const [side, setSide] = useState("");
+  const [row, setRow] = useState([
+    ["parallelogram", "circle", "square"],
+    ["rectangle", "oval", "trapezoid"],
+  ]);
+
+  const [swap, setSwap] = useState(false);
+
+  function moveLeft(prevRow: string[][]) {
+    const firstItemRow1 = prevRow[0].shift();
+    const firstItemRow2 = prevRow[1].shift();
+
+    prevRow[0].push(firstItemRow2 || "");
+    prevRow[1].push(firstItemRow1 || "");
+    return [...prevRow];
+  }
+
+  function moveRight(prevRow: string[][]) {
+    const firstItemRow1 = prevRow[0].pop();
+    const firstItemRow2 = prevRow[1].pop();
+
+    prevRow[0].unshift(firstItemRow2 || "");
+    prevRow[1].unshift(firstItemRow1 || "");
+    return [...prevRow];
+  }
+
+  function shuffleItem(prevRow: string[][]) {
+    const newRow = prevRow.map((subArray) => {
+      const shuffledSubArray = [...subArray];
+
+      for (let i = shuffledSubArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledSubArray[i], shuffledSubArray[j]] = [
+          shuffledSubArray[j],
+          shuffledSubArray[i],
+        ];
+      }
+
+      return shuffledSubArray;
+    });
+
+    return newRow;
+  }
 
   const handleOnClickLeft = () => {
-    // complete 1 round reset buttonOrder
-    if (buttonOrder === -6) {
-      setButtonOrder(-1);
-    } else {
-      setButtonOrder(buttonOrder - 1);
-    }
-    setSide("Left");
+    setRow(moveLeft(row));
   };
 
   const handleOnClickRight = () => {
-    // complete 1 round reset buttonOrder
-    if (buttonOrder === 6) {
-      setButtonOrder(1);
-    } else {
-      setButtonOrder(buttonOrder + 1);
-    }
-    setSide("Right");
+    setRow(moveRight(row));
   };
 
-  const getOrder = (initialOrder: number) => {
-    // Calculate the updated order based on buttonOrder
-    let updatedOrder = initialOrder + buttonOrder;
+  const handlePosition = () => {
+    setSwap(!swap);
+  };
 
-    // Adjust the order based on the side value
-    if (side === "Left") {
-      if (updatedOrder > 6) {
-        return updatedOrder - 6;
-      } else if (updatedOrder < 1) {
-        return updatedOrder + 6;
-      } else {
-        return updatedOrder;
-      }
-    } else if (side === "Right") {
-      if (updatedOrder > 6) {
-        return updatedOrder - 6;
-      } else if (updatedOrder < 1) {
-        return updatedOrder + 6;
-      } else {
-        return updatedOrder;
-      }
-    }
-
-    // Default case
-    return initialOrder;
+  const handleShuffle = () => {
+    setRow(shuffleItem(row));
   };
 
   return (
@@ -64,12 +73,12 @@ const App = () => {
             </button>
           </Col>
           <Col span={4}>
-            <button className="Button">
+            <button onClick={handlePosition} className="Button">
               <div id="triangle-up"></div>
             </button>
           </Col>
           <Col span={4}>
-            <button className="Button">
+            <button onClick={handlePosition} className="Button">
               <div id="triangle-down"></div>
             </button>
           </Col>
@@ -80,39 +89,25 @@ const App = () => {
           </Col>
         </Row>
         <Divider />
-        <Row gutter={[12, 12]}>
-          
-          <Col span={8} order={getOrder(1)}>
-            <button className="Button">
-              <div id="parallelogram"></div>
-            </button>
-          </Col>
-          <Col span={8} order={getOrder(2)}>
-            <button className="Button">
-              <div id="circle"></div>
-            </button>
-          </Col>
-          <Col span={8} order={getOrder(3)}>
-            <button className="Button">
-              <div id="square"></div>
-            </button>
-          </Col>
 
-          <Col span={8} order={getOrder(4)}>
-            <button className="Button">
-              <div id="rectangle"></div>
-            </button>
-          </Col>
-          <Col span={8} order={getOrder(5)}>
-            <button className="Button">
-              <div id="oval"></div>
-            </button>
-          </Col>
-          <Col span={8} order={getOrder(6)}>
-            <button className="Button">
-              <div id="trapezoid"></div>
-            </button>
-          </Col>
+        <Row gutter={[12, 12]} justify={swap ? "center" : "end"} style={{marginBottom: "10px"}}>
+          {row[0].map((item, index) => (
+            <Col span={6} order={index + 1} key={item}>
+              <button onClick={handleShuffle} className="Button">
+                <div id={item}></div>
+              </button>
+            </Col>
+          ))}
+        </Row>
+
+        <Row gutter={[12, 12]} justify={swap ? "end" : "center"}>
+          {row[1].map((item, index) => (
+            <Col span={6} order={index + 1} key={item}>
+              <button onClick={handleShuffle} className="Button">
+                <div id={item}></div>
+              </button>
+            </Col>
+          ))}
         </Row>
       </main>
     </div>
