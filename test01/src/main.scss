@@ -76,6 +76,20 @@ body {
   @extend %Button;
 }
 
+.Form {
+  @extend %center;
+  border: 2px solid black;
+  max-width: 60vw;
+  border-radius: 8px;
+  border-color: gray;
+  min-height: 400px;
+  padding: 10px;
+}
+.Table {
+  max-width: 80vw;
+  margin: 40px auto;
+}
+
 #parallelogram {
   @extend %center;
   width: 150px;
