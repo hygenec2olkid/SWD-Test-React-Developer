@@ -90,7 +90,11 @@ const Test1 = () => {
         </Row>
         <Divider />
 
-        <Row gutter={[12, 12]} justify={swap ? "center" : "end"} style={{marginBottom: "10px"}}>
+        <Row
+          gutter={[12, 12]}
+          justify={swap ? "center" : "end"}
+          style={{ marginBottom: "10px" }}
+        >
           {row[0].map((item, index) => (
             <Col span={6} order={index + 1} key={item}>
               <button onClick={handleShuffle} className="Button">
