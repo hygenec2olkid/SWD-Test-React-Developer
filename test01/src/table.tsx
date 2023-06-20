@@ -3,6 +3,7 @@ import { Button, Table } from "antd";
 import { useSelector } from "react-redux";
 import { FormDataState } from "./todoSlice";
 import { ColumnsType } from "antd/es/table";
+import { useTranslation } from "react-i18next";
 
 interface DataSourceItem {
   key: number;
@@ -14,10 +15,15 @@ interface DataSourceItem {
 }
 
 const MyTable: React.FC = () => {
+  // init form
   const formDataArray = useSelector(
     (state: any) => state.todoSlice.formDataArray
   );
 
+  // use useTranslation to transtate th/en
+  const { t } = useTranslation();
+
+  // use date from form
   const dataSource: DataSourceItem[] = formDataArray.map(
     (formData: FormDataState, index: number) => ({
       key: index,
@@ -29,6 +35,7 @@ const MyTable: React.FC = () => {
     })
   );
 
+  // determine name and type colum
   const columns: ColumnsType<DataSourceItem> = [
     {
       title: "ชื่อ",
@@ -65,7 +72,7 @@ const MyTable: React.FC = () => {
 
   return (
     <div>
-      <Button style={{ marginBottom: 10 }}>ลบข้อมูล</Button>
+      <Button style={{ marginBottom: 10 }}>{t("buttonDelete")}</Button>
       <Table
         rowSelection={{
           type: "checkbox",

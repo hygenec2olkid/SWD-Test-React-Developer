@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { Divider, Col, Row } from "antd";
+import { useTranslation } from "react-i18next";
 import "./main.css";
 
 const Test1 = () => {
+  //init row 
   const [row, setRow] = useState([
     ["parallelogram", "circle", "square"],
     ["rectangle", "oval", "trapezoid"],
   ]);
 
+  //use useTranslation to transtate th/en
+  const { t } = useTranslation();
+
+  // init const to control about change position top/bottom
   const [swap, setSwap] = useState(false);
 
+  // function about movement
   function moveLeft(prevRow: string[][]) {
     const firstItemRow1 = prevRow[0].shift();
     const firstItemRow2 = prevRow[1].shift();
@@ -28,6 +35,7 @@ const Test1 = () => {
     return [...prevRow];
   }
 
+  // function about shuffleItem 
   function shuffleItem(prevRow: string[][]) {
     const newRow = prevRow.map((subArray) => {
       const shuffledSubArray = [...subArray];
@@ -64,7 +72,7 @@ const Test1 = () => {
 
   return (
     <div>
-      <header className="header">Layout & Style</header>
+      <header className="header">{t("contentTest1")}</header>
       <main className="container">
         <Row gutter={[10, 10]} justify="center">
           <Col span={4}>

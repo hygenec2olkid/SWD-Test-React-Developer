@@ -5,17 +5,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { format } from "date-fns";
 import MyTable from "./table";
 import { useEffect, useState } from "react";
-
-const { Option } = Select;
+import { useTranslation } from "react-i18next";
 
 const Test2 = () => {
+  // use useDispatch to update state in data using redux
   const dispatch = useDispatch();
+
+  // init form
   const [form] = Form.useForm();
+
+  //use useTranslation to transtate th/en
+  const { t } = useTranslation();
+
+  const { Option } = Select;
+
+  // init form from todoSliceReducer
   const formDataArray = useSelector(
     (state: any) => state.todoSlice.formDataArray
   );
+
+  // create localFormDataArray to keep data in localStorage
   const [localFormDataArray, setLocalFormDataArray] = useState(formDataArray);
 
+  // use useEffect to detect dispatch when get new data from form
   useEffect(() => {
     const savedFormDataArray = localStorage.getItem("formDataArray");
     if (savedFormDataArray) {
@@ -25,6 +37,7 @@ const Test2 = () => {
     }
   }, [dispatch]);
 
+  // save data in localStorage
   useEffect(() => {
     localStorage.setItem("formDataArray", JSON.stringify(localFormDataArray));
   }, [localFormDataArray]);
@@ -47,30 +60,39 @@ const Test2 = () => {
   const onReset = () => {
     form.resetFields();
   };
+
   return (
     <div>
-      <header className="header">Form & Table </header>
+      <header className="header">{t("contentTest2")}</header>
       <div className="Form">
         <Form form={form} onFinish={onSubmit}>
           <Row gutter={[16, 16]} justify="start">
             <Col span={5}>
               <Form.Item
                 name="prefix"
-                label="คำนำหน้า"
+                label={t("prefix")}
                 rules={[{ required: true }]}
               >
-                <Select placeholder="คำนำหน้า" allowClear>
-                  <Option value="นาย">นาย</Option>
-                  <Option value="นาง">นาง</Option>
-                  <Option value="นางสาว">นางสาว</Option>
-                  <Option value="อื่นๆ">อื่นๆ</Option>
+                <Select placeholder={t("prefix")} allowClear>
+                  <Option value={t("prefixNameChoice1")}>
+                    {t("prefixNameChoice1")}
+                  </Option>
+                  <Option value={t("prefixNameChoice2")}>
+                    {t("prefixNameChoice2")}
+                  </Option>
+                  <Option value={t("prefixNameChoice3")}>
+                    {t("prefixNameChoice3")}
+                  </Option>
+                  <Option value={t("prefixNameChoice4")}>
+                    {t("prefixNameChoice4")}
+                  </Option>
                 </Select>
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="fname"
-                label="ชื่อจริง"
+                label={t("fname")}
                 rules={[{ required: true }]}
               >
                 <Input />
@@ -79,7 +101,7 @@ const Test2 = () => {
             <Col span={8}>
               <Form.Item
                 name="lname"
-                label="นามสกุล"
+                label={t("lname")}
                 rules={[{ required: true }]}
               >
                 <Input />
@@ -90,7 +112,7 @@ const Test2 = () => {
             <Col span={6}>
               <Form.Item
                 name="birthday"
-                label="วันเกิด"
+                label={t("birthday")}
                 rules={[{ required: true }]}
               >
                 <DatePicker />
@@ -101,19 +123,23 @@ const Test2 = () => {
               {" "}
               <Form.Item
                 name="nationality"
-                label="สัญชาติ"
+                label={t("nationality")}
                 rules={[{ required: true }]}
               >
-                <Select placeholder="-- กรุณาเลือก --" allowClear>
-                  <Option value="ไทย">ไทย</Option>
-                  <Option value="อื่นๆ">อื่นๆ</Option>
+                <Select placeholder={t("nationalityPlaceholder")} allowClear>
+                  <Option value={t("nationalityChoice1")}>
+                    {t("nationalityChoice1")}
+                  </Option>
+                  <Option value={t("nationalityChoice2")}>
+                    {t("nationalityChoice2")}
+                  </Option>
                 </Select>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[10, 10]}>
             <Col span={5}>
-              <Form.Item name="citizenID" label="เลขบัตรประชาชน">
+              <Form.Item name="citizenID" label={t("citizenID")}>
                 <Input />
               </Form.Item>
             </Col>
@@ -142,18 +168,22 @@ const Test2 = () => {
               </Form.Item>
             </Col>
           </Row>
-          <Form.Item label="เพศ" name="gender" rules={[{ required: true }]}>
+          <Form.Item
+            label={t("gender")}
+            name="gender"
+            rules={[{ required: true }]}
+          >
             <Radio.Group>
-              <Radio value="ผู้ชาย"> ผู้ชาย </Radio>
-              <Radio value="ผู้หญิง"> ผู้หญิง </Radio>
-              <Radio value="ไม่ระบุ"> ไม่ระบุ </Radio>
+              <Radio value={t("genderChoice1")}> {t("genderChoice1")}</Radio>
+              <Radio value={t("genderChoice2")}> {t("genderChoice2")} </Radio>
+              <Radio value={t("genderChoice3")}> {t("genderChoice3")} </Radio>
             </Radio.Group>
           </Form.Item>
           <Row>
-            <Col span={6} style={{ marginRight: 7 }}>
+            <Col style={{ marginRight: 7 }}>
               <Form.Item
                 name="prefixphone"
-                label="หมายเลขโทรศัพท์มือถือ"
+                label={t("phoneNumber")}
                 rules={[{ required: true }]}
               >
                 <Select style={{ width: 70 }}>
@@ -169,18 +199,14 @@ const Test2 = () => {
               </Form.Item>
             </Col>
           </Row>
-          <Form.Item
-            name="booking"
-            label="หนังสือเดินทาง"
-            style={{ width: 400 }}
-          >
+          <Form.Item name="booking" label={t("booking")} style={{ width: 400 }}>
             <Input />
           </Form.Item>
 
           <Row>
             <Form.Item
               name="salary"
-              label="เงินเดือนที่คาดหวัง"
+              label={t("salary")}
               style={{ width: 400 }}
               rules={[{ required: true }]}
             >
@@ -188,11 +214,11 @@ const Test2 = () => {
             </Form.Item>
             <Form.Item style={{ marginLeft: 120 }}>
               <Button htmlType="button" onClick={onReset}>
-                ล้างข้อมูล
+                {t("buttonClear")}
               </Button>
             </Form.Item>
             <Form.Item style={{ marginLeft: 60 }}>
-              <Button htmlType="submit">ส่งข้อมูล</Button>
+              <Button htmlType="submit">{t("buttonSubmit")}</Button>
             </Form.Item>
           </Row>
         </Form>
