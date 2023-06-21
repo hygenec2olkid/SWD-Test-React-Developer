@@ -1,0 +1,39 @@
+$color1: #6eda78;
+$color2: #ffa200;
+$color3: rgb(182, 182, 182);
+
+%center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, $color1, $color2);
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 24px;
+  margin: 20px;
+  height: 30px;
+}
+
+.Form {
+  @extend %center;
+  border: 2px solid black;
+  max-width: 60vw;
+  border-radius: 8px;
+  border-color: gray;
+  min-height: 400px;
+  padding: 10px;
+}
+
+.Table {
+  max-width: 80vw;
+  margin: 40px auto;
+}
+

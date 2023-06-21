@@ -1,4 +1,4 @@
-#trapezoid, #oval, #rectangle, #square, #circle, #parallelogram, .Form, #triangle-down, #triangle-up, #triangle-right, #triangle-left {
+#trapezoid, #oval, #rectangle, #square, #circle, #parallelogram, #triangle-down, #triangle-up, #triangle-right, #triangle-left {
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -20,11 +20,6 @@
 #triangle-down, #triangle-up, #triangle-right, #triangle-left {
   width: 0;
   height: 0;
-  margin: 0 auto;
-}
-
-.container {
-  width: 80%;
   margin: 0 auto;
 }
 
@@ -50,32 +45,6 @@
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
   border-top: 70px solid rgb(182, 182, 182);
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to right, #6eda78, #ffa200);
-  min-height: 100vh;
-}
-
-.header {
-  font-size: 24px;
-  margin: 20px;
-}
-
-.Form {
-  border: 2px solid black;
-  max-width: 60vw;
-  border-radius: 8px;
-  border-color: gray;
-  min-height: 400px;
-  padding: 10px;
-}
-
-.Table {
-  max-width: 80vw;
-  margin: 40px auto;
 }
 
 #parallelogram {
@@ -119,4 +88,22 @@ body {
   width: 120px;
 }
 
-/*# sourceMappingURL=main.css.map */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #6eda78, #ffa200);
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 24px;
+  margin: 20px;
+  height: 30px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=test1.css.map */

@@ -1,0 +1,35 @@
+.Form {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #6eda78, #ffa200);
+  min-height: 100vh;
+}
+
+.header {
+  font-size: 24px;
+  margin: 20px;
+  height: 30px;
+}
+
+.Form {
+  border: 2px solid black;
+  max-width: 60vw;
+  border-radius: 8px;
+  border-color: gray;
+  min-height: 400px;
+  padding: 10px;
+}
+
+.Table {
+  max-width: 80vw;
+  margin: 40px auto;
+}
+
+/*# sourceMappingURL=test2.css.map */

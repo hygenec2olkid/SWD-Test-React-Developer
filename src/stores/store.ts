@@ -1,10 +1,10 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
-import todoSliceReducer from "./todoSlice";
+import formSliceReducer from "./formSlide";
 
 const store = configureStore({
   reducer: {
-    todoSlice: todoSliceReducer,
+    formSlice: formSliceReducer,
   },
 });
 

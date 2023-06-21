@@ -1,7 +1,7 @@
 import { Col, Row, Select } from "antd";
 import "./main.css";
-import Test1 from "./test1";
-import Test2 from "./test2";
+import Test1 from "./components/test1/test1";
+import Test2 from "./components/test2/test2";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";

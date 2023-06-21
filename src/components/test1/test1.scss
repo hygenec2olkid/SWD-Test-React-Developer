@@ -28,10 +28,6 @@ $color3: rgb(182, 182, 182);
   margin: 0 auto;
 }
 
-.container {
-  width: 80%;
-  margin: 0 auto;
-}
 
 #triangle-left {
   @extend %triangle;
@@ -60,6 +56,51 @@ $color3: rgb(182, 182, 182);
   border-right: 35px solid transparent;
   border-top: 70px solid $color3;
 }
+
+#parallelogram {
+    @extend %center;
+    width: 150px;
+    height: 70px;
+    transform: skew(20deg);
+    background: $color3;
+  }
+  
+  #circle {
+    @extend %center;
+    width: 80px;
+    height: 80px;
+    background: $color3;
+    border-radius: 50%;
+  }
+  #square {
+    @extend %center;
+    width: 80px;
+    height: 80px;
+    background: $color3;
+  }
+  #rectangle {
+    @extend %center;
+    width: 180px;
+    height: 75px;
+    background: $color3;
+  }
+  #oval {
+    @extend %center;
+    width: 150px;
+    height: 75px;
+    background: $color3;
+    border-radius: 100px / 50px;
+  }
+  #trapezoid {
+    @extend %center;
+    border-bottom: 80px solid $color3;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0px;
+    width: 120px;
+  }
+  
+
 body {
   margin: 0;
   padding: 0;
@@ -70,65 +111,15 @@ body {
 .header {
   font-size: 24px;
   margin: 20px;
+  height: 30px;
 }
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+  }
 
 .Button {
   @extend %Button;
 }
 
-.Form {
-  @extend %center;
-  border: 2px solid black;
-  max-width: 60vw;
-  border-radius: 8px;
-  border-color: gray;
-  min-height: 400px;
-  padding: 10px;
-}
-.Table {
-  max-width: 80vw;
-  margin: 40px auto;
-}
-
-#parallelogram {
-  @extend %center;
-  width: 150px;
-  height: 70px;
-  transform: skew(20deg);
-  background: $color3;
-}
-
-#circle {
-  @extend %center;
-  width: 80px;
-  height: 80px;
-  background: $color3;
-  border-radius: 50%;
-}
-#square {
-  @extend %center;
-  width: 80px;
-  height: 80px;
-  background: $color3;
-}
-#rectangle {
-  @extend %center;
-  width: 180px;
-  height: 75px;
-  background: $color3;
-}
-#oval {
-  @extend %center;
-  width: 150px;
-  height: 75px;
-  background: $color3;
-  border-radius: 100px / 50px;
-}
-#trapezoid {
-  @extend %center;
-  border-bottom: 80px solid $color3;
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  height: 0px;
-  width: 120px;
-}

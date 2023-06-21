@@ -14,12 +14,12 @@ export interface FormDataState {
   salary: string;
 }
 
-interface TodoState {
+interface formState {
   formData: FormDataState;
   formDataArray: FormDataState[];
 }
 
-const initialState: TodoState = {
+const initialState: formState = {
   formData: {
     prefix: "",
     fname: "",
@@ -36,8 +36,8 @@ const initialState: TodoState = {
   formDataArray: [],
 };
 
-const todoSlice = createSlice({
-  name: "todoSlice",
+const formSlide = createSlice({
+  name: "formSlide",
   initialState,
   reducers: {
     createFormData: (state, action: PayloadAction<FormDataState[]>) => {
@@ -53,5 +53,5 @@ const todoSlice = createSlice({
   },
 });
 
-export const { createFormData, deleteFormData } = todoSlice.actions;
-export default todoSlice.reducer;
+export const { createFormData, deleteFormData } = formSlide.actions;
+export default formSlide.reducer;

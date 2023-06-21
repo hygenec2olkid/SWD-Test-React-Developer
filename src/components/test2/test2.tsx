@@ -1,6 +1,6 @@
-import "./main.css";
+import "./test2.css";
 import { Form, Input, Select, Row, Col, DatePicker, Radio, Button } from "antd";
-import { createFormData } from "./todoSlice";
+import { createFormData } from "../../stores/formSlide";
 import { useDispatch, useSelector } from "react-redux";
 import { format } from "date-fns";
 import MyTable from "./table";
@@ -19,9 +19,9 @@ const Test2 = () => {
 
   const { Option } = Select;
 
-  // init form from todoSliceReducer
+  // init form from formSliceReducer
   const formDataArray = useSelector(
-    (state: any) => state.todoSlice.formDataArray
+    (state: any) => state.formSlice.formDataArray
   );
 
   // create localFormDataArray to keep data in localStorage

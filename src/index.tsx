@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./stores/store";
 import App from "./App";
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
 
 ReactDOM.render(
@@ -12,5 +12,5 @@ ReactDOM.render(
       <App />
     </I18nextProvider>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

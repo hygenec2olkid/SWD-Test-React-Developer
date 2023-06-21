@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { FormDataState, deleteFormData } from "./todoSlice";
+import { FormDataState, deleteFormData } from "../../stores/formSlide";
 import { ColumnsType } from "antd/es/table";
 import { useTranslation } from "react-i18next";
 
@@ -18,9 +18,9 @@ const MyTable: React.FC = () => {
   //keep track of the selected row keys
   const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
 
-  // init form from todoSlice
+  // init form from formSlice
   const formDataArray = useSelector(
-    (state: any) => state.todoSlice.formDataArray
+    (state: any) => state.formSlice.formDataArray
   );
 
   // use useTranslation to transtate th/en

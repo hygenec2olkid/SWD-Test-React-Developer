@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Divider, Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
-import "./main.css";
+import "./test1.css";
 
 const Test1 = () => {
   //init row 
