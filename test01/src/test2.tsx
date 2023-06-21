@@ -187,8 +187,8 @@ const Test2 = () => {
                 rules={[{ required: true }]}
               >
                 <Select style={{ width: 70 }}>
-                  <Option value="66">+66</Option>
-                  <Option value="77">+77</Option>
+                  <Option value="+66">+66</Option>
+                  <Option value="+77">+77</Option>
                 </Select>
               </Form.Item>
             </Col>
