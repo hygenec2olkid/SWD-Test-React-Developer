@@ -4,14 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { FormDataState, deleteFormData } from "../../stores/formSlide";
 import { ColumnsType } from "antd/es/table";
 import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 interface DataSourceItem {
   key: number;
-  ชื่อ: string;
-  เพศ: string;
-  หมายเลขโทรศัพท์มือถือ: string;
-  สัญชาติ: string;
-  จัดการ: string;
+  name: string;
+  gender: string;
+  phoneNumber: string;
+  nationality: string;
+  handle: string;
 }
 
 const MyTable: React.FC = () => {
@@ -33,27 +34,27 @@ const MyTable: React.FC = () => {
   const dataSource: DataSourceItem[] = formDataArray.map(
     (formData: FormDataState, index: number) => ({
       key: index,
-      ชื่อ: `${formData.prefix} ${formData.fname} ${formData.lname}`,
-      เพศ: formData.gender,
-      หมายเลขโทรศัพท์มือถือ: `${formData.prefixphone} ${formData.phone}`,
-      สัญชาติ: formData.nationality,
-      จัดการ: "ตัวอย่าง",
+      name: `${formData.prefix} ${formData.fname} ${formData.lname}`,
+      gender: formData.gender,
+      phoneNumber: `${formData.prefixphone} ${formData.phone}`,
+      nationality: formData.nationality,
+      handle: "ตัวอย่าง",
     })
   );
 
   // determine name and type colum
   const columns: ColumnsType<DataSourceItem> = [
     {
-      title: "ชื่อ",
-      dataIndex: "ชื่อ",
-      key: "ชื่อ",
-      sorter: (a, b) => a.ชื่อ.length - b.ชื่อ.length,
+      title: t("name"),
+      dataIndex: "name",
+      key: "name",
+      sorter: (a, b) => a.name.length - b.name.length,
       sortDirections: ["descend"],
     },
     {
-      title: "เพศ",
-      dataIndex: "เพศ",
-      key: "เพศ",
+      title: t("gender"),
+      dataIndex: "gender",
+      key: "gender",
       filters: [
         {
           text: "ผู้ชาย/male",
@@ -69,22 +70,22 @@ const MyTable: React.FC = () => {
         },
       ],
       onFilter: (value: string | number | boolean, record) => {
-        const gender = record.เพศ;
+        const _gender = record.gender;
         return (
-          gender === value ||
-          (gender === "ผู้ชาย" && value === "ผู้ชาย || male") ||
-          (gender === "male" && value === "ผู้ชาย || male") ||
-          (gender === "ผู้หญิง" && value === "ผู้หญิง || female") ||
-          (gender === "female" && value === "ผู้หญิง || female") ||
-          (gender === "ไม่ระบุ" && value === "ไม่ระบุ || anonymous") ||
-          (gender === "anonymous" && value === "ไม่ระบุ || anonymous")
+          _gender === value ||
+          (_gender === "ผู้ชาย" && value === "ผู้ชาย || male") ||
+          (_gender === "male" && value === "ผู้ชาย || male") ||
+          (_gender === "ผู้หญิง" && value === "ผู้หญิง || female") ||
+          (_gender === "female" && value === "ผู้หญิง || female") ||
+          (_gender === "ไม่ระบุ" && value === "ไม่ระบุ || anonymous") ||
+          (_gender === "anonymous" && value === "ไม่ระบุ || anonymous")
         );
       },
     },
     {
-      title: "หมายเลขโทรศัพท์มือถือ",
-      dataIndex: "หมายเลขโทรศัพท์มือถือ",
-      key: "หมายเลขโทรศัพท์มือถือ",
+      title: t("phoneNumber"),
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
       filters: [
         {
           text: "+66",
@@ -96,37 +97,37 @@ const MyTable: React.FC = () => {
         },
       ],
       onFilter: (value: string | number | boolean, record) =>
-        record.หมายเลขโทรศัพท์มือถือ.indexOf(value as string) === 0,
+        record.phoneNumber.indexOf(value as string) === 0,
     },
     {
-      title: "สัญชาติ",
-      dataIndex: "สัญชาติ",
-      key: "สัญชาติ",
+      title: t("nationality"),
+      dataIndex: "nationality",
+      key: "nationality",
       filters: [
         {
-          text: "ไทย/thai",
-          value: "ไทย || thai",
+          text: "ไทย/Thai",
+          value: "ไทย || Thai",
         },
         {
-          text: "อื่นๆ/other",
-          value: "อื่นๆ || other",
+          text: "อื่นๆ/Other",
+          value: "อื่นๆ || Other",
         },
       ],
       onFilter: (value: string | number | boolean, record) => {
-        const nation = record.สัญชาติ;
+        const nation = record.nationality;
         return (
           nation === value ||
-          (nation === "ไทย" && value === "ไทย || thai") ||
-          (nation === "thai" && value === "ไทย || thai") ||
-          (nation === "อื่นๆ" && value === "อื่นๆ || other") ||
-          (nation === "other" && value === "อื่นๆ || other")
+          (nation === "ไทย" && value === "ไทย || Thai") ||
+          (nation === "Thai" && value === "ไทย || Thai") ||
+          (nation === "อื่นๆ" && value === "อื่นๆ || Other") ||
+          (nation === "Other" && value === "อื่นๆ || Other")
         );
       },
     },
     {
-      title: "จัดการ",
-      dataIndex: "จัดการ",
-      key: "จัดการ",
+      title: t("handle"),
+      dataIndex: "handle",
+      key: "handle",
     },
   ];
 

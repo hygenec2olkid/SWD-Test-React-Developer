@@ -8,6 +8,7 @@
   "prefixNameChoice2": "นาง",
   "prefixNameChoice3": "นางสาว",
   "prefixNameChoice4": "อื่นๆ",
+  "name": "ชื่อ",
   "fname": "ชื่อจริง",
   "lname": "นามสกุล",
   "birthday": "วันเกิด",
@@ -25,6 +26,7 @@
   "salary": "เงินเดือนที่คาดหวัง",
   "buttonClear": "ล้างข้อมูล",
   "buttonSubmit": "ส่งข้อมูล",
-  "buttonDelete": "ลบข้อมูล"
+  "buttonDelete": "ลบข้อมูล",
+  "handle": "จัดการ"
   }
   
