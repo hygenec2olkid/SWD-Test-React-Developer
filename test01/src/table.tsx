@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
-import { useSelector } from "react-redux";
-import { FormDataState } from "./todoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { FormDataState, deleteFormData } from "./todoSlice";
 import { ColumnsType } from "antd/es/table";
 import { useTranslation } from "react-i18next";
 
@@ -15,13 +15,19 @@ interface DataSourceItem {
 }
 
 const MyTable: React.FC = () => {
-  // init form
+  //keep track of the selected row keys
+  const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
+
+  // init form from todoSlice
   const formDataArray = useSelector(
     (state: any) => state.todoSlice.formDataArray
   );
 
   // use useTranslation to transtate th/en
   const { t } = useTranslation();
+
+  //use useDispatch to call function deleteFormData
+  const dispatch = useDispatch();
 
   // use date from form
   const dataSource: DataSourceItem[] = formDataArray.map(
@@ -113,8 +119,8 @@ const MyTable: React.FC = () => {
           (nation === "ไทย" && value === "ไทย || thai") ||
           (nation === "thai" && value === "ไทย || thai") ||
           (nation === "อื่นๆ" && value === "อื่นๆ || other") ||
-          (nation === "other" && value === "อื่นๆ || other") 
-);
+          (nation === "other" && value === "อื่นๆ || other")
+        );
       },
     },
     {
@@ -124,6 +130,21 @@ const MyTable: React.FC = () => {
     },
   ];
 
+  const handleDelete = () => {
+    const updatedDataArray = formDataArray.filter(
+      (_: any, index: number) => !selectedRowKeys.includes(index)
+    );
+
+    // // Delete data from local storage
+    localStorage.setItem("formDataArray", JSON.stringify(updatedDataArray));
+
+    // // Update the Redux store
+    dispatch(deleteFormData(selectedRowKeys));
+
+    // // Clear the selected row keys
+    setSelectedRowKeys([]);
+  };
+
   const paginationConfig = {
     pageSize: 5,
     showTotal: (total: number, range: [number, number]) =>
@@ -132,10 +153,15 @@ const MyTable: React.FC = () => {
 
   return (
     <div>
-      <Button style={{ marginBottom: 10 }}>{t("buttonDelete")}</Button>
+      <Button onClick={handleDelete} style={{ marginBottom: 10 }}>
+        {t("buttonDelete")}
+      </Button>
       <Table
         rowSelection={{
           type: "checkbox",
+          selectedRowKeys: selectedRowKeys,
+          onChange: (selectedKeys: React.Key[]) =>
+            setSelectedRowKeys(selectedKeys as number[]),
         }}
         dataSource={dataSource}
         columns={columns}

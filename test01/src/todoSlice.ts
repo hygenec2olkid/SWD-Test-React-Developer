@@ -44,8 +44,14 @@ const todoSlice = createSlice({
       const newFormDataArray = action.payload;
       state.formDataArray = newFormDataArray;
     },
+    deleteFormData: (state, action: PayloadAction<number[]>) => {
+      const indexesToDelete = action.payload;
+      state.formDataArray = state.formDataArray.filter(
+        (_, index) => !indexesToDelete.includes(index)
+      );
+    },
   },
 });
 
-export const { createFormData } = todoSlice.actions;
+export const { createFormData, deleteFormData } = todoSlice.actions;
 export default todoSlice.reducer;
