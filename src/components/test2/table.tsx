@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { FormDataState, deleteFormData } from "../../stores/formSlide";
 import { ColumnsType } from "antd/es/table";
 import { useTranslation } from "react-i18next";
-import i18n from "../../i18n";
 
 interface DataSourceItem {
   key: number;
